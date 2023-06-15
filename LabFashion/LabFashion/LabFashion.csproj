@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="Context\" />
-    <Folder Include="DTOs\" />
   </ItemGroup>
 
 </Project>
