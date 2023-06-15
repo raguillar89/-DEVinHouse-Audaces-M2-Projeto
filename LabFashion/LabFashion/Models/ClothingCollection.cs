@@ -12,7 +12,7 @@ namespace LabFashion.Models
         [Required(ErrorMessage = "É necessário inserir o Nome da Coleção")]
         public string NameCollection { get; set; }
 
-        [ForeignKey("Usuário")]
+        [ForeignKey("Person")]
         [Required(ErrorMessage = "É necessário inserir o Id do Usuário na Coleção")]
         public int IdPerson { get; set; }
 
@@ -28,11 +28,11 @@ namespace LabFashion.Models
         public string ReleaseYearCollection { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir a Estação da Coleção")]
-        public LaunchStation LaunchStation { get; set; }
+        public LaunchStation? LaunchStation { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir o Status da Coleção")]
-        public SystemStatus SystemStatus { get; set; }
+        public SystemStatus? SystemStatus { get; set; }
 
-        public virtual User? User { get; set; }
+        public virtual Person? Person { get; set; }
     }
 }
