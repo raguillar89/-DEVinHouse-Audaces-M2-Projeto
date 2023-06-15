@@ -16,7 +16,7 @@ namespace LabFashion.Repositories
 
         public async Task<IEnumerable<ClothingCollection>> GetClothingCollections()
         {
-            return await _lccContext.Collections.ToListAsync();
+            return await _lccContext.Collections.Include(x => x.Person).ToListAsync();
         }
 
         public async Task<ClothingCollection> GetClothingCollectionById(int IdCollection)
