@@ -10,6 +10,7 @@ namespace LabFashion.Mapping
         {
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<Person, PersonDTO>().ReverseMap();
+            CreateMap<ClothingCollection, ClothingCollectionDTO>().ReverseMap();
         }
     }
 }
