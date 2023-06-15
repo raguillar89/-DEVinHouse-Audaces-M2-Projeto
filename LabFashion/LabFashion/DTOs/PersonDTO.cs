@@ -4,6 +4,8 @@ namespace LabFashion.DTOs
 {
     public class PersonDTO
     {
+        public int IdPerson { get; set; }
+
         [Required(ErrorMessage = "É necessário inserir o Nome do Usuário.")]
         [MaxLength(40, ErrorMessage = "Tamanho máximo de 40 caracteres.")]
         public string NamePerson { get; set; }

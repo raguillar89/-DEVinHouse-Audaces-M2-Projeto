@@ -21,7 +21,7 @@ namespace LabFashion.Repositories
 
         public async Task<User> GetUserById(int IdUser)
         {
-            return await _lccContext.Users.Where(x => x.IdUser == IdUser).FirstOrDefaultAsync();
+            return await _lccContext.Users.Where(x => x.IdPerson == IdUser).FirstOrDefaultAsync();
         }
 
         public void CreateUser(User user)
