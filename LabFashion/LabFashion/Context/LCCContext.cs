@@ -11,6 +11,7 @@ namespace LabFashion.Context
 
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ClothingCollection> Collections { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,6 +28,7 @@ namespace LabFashion.Context
             modelBuilder.Entity<User>().HasData(new User
             {
                 IdPerson = 1,
+                Email = "renan@email.com",
                 TypeUser = Enums.TypeUser.Administrador,
                 SystemStatus = Enums.SystemStatus.Ativo,
                 NamePerson = "Renan",
@@ -39,6 +41,7 @@ namespace LabFashion.Context
             modelBuilder.Entity<User>().HasData(new User
             {
                 IdPerson = 2,
+                Email = "josericardo@email.com",
                 TypeUser = Enums.TypeUser.Administrador,
                 SystemStatus = Enums.SystemStatus.Inativo,
                 NamePerson = "José Ricardo",
@@ -51,6 +54,7 @@ namespace LabFashion.Context
             modelBuilder.Entity<User>().HasData(new User
             {
                 IdPerson = 3,
+                Email = "eric@email.com",
                 TypeUser = Enums.TypeUser.Gerente,
                 SystemStatus = Enums.SystemStatus.Ativo,
                 NamePerson = "Eric",
@@ -63,6 +67,7 @@ namespace LabFashion.Context
             modelBuilder.Entity<User>().HasData(new User
             {
                 IdPerson = 4,
+                Email = "priscila@email.com",
                 TypeUser = Enums.TypeUser.Administrador,
                 SystemStatus = Enums.SystemStatus.Inativo,
                 NamePerson = "Priscila",
@@ -75,6 +80,7 @@ namespace LabFashion.Context
             modelBuilder.Entity<User>().HasData(new User
             {
                 IdPerson = 5,
+                Email = "sonia@email.com",
                 TypeUser = Enums.TypeUser.Criador,
                 SystemStatus = Enums.SystemStatus.Ativo,
                 NamePerson = "Sonia",
