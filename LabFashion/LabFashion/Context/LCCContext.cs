@@ -26,10 +26,9 @@ namespace LabFashion.Context
 
             modelBuilder.Entity<User>().HasData(new User
             {
-                IdUser = 1,
+                IdPerson = 1,
                 TypeUser = Enums.TypeUser.Administrador,
                 SystemStatus = Enums.SystemStatus.Ativo,
-                IdPerson = 1,
                 NamePerson = "Renan",
                 GenrePerson = "Masculino",
                 BirthDatePerson = new DateTime(1989, 03, 01),
@@ -39,10 +38,9 @@ namespace LabFashion.Context
 
             modelBuilder.Entity<User>().HasData(new User
             {
-                IdUser = 2,
+                IdPerson = 2,
                 TypeUser = Enums.TypeUser.Administrador,
                 SystemStatus = Enums.SystemStatus.Inativo,
-                IdPerson = 2,
                 NamePerson = "José Ricardo",
                 GenrePerson = "Masculino",
                 BirthDatePerson = new DateTime(1957, 09, 01),
@@ -52,10 +50,9 @@ namespace LabFashion.Context
 
             modelBuilder.Entity<User>().HasData(new User
             {
-                IdUser = 3,
+                IdPerson = 3,
                 TypeUser = Enums.TypeUser.Gerente,
                 SystemStatus = Enums.SystemStatus.Ativo,
-                IdPerson = 3,
                 NamePerson = "Eric",
                 GenrePerson = "Masculino",
                 BirthDatePerson = new DateTime(1982, 09, 18),
@@ -65,10 +62,9 @@ namespace LabFashion.Context
 
             modelBuilder.Entity<User>().HasData(new User
             {
-                IdUser = 4,
+                IdPerson = 4,
                 TypeUser = Enums.TypeUser.Administrador,
                 SystemStatus = Enums.SystemStatus.Inativo,
-                IdPerson = 4,
                 NamePerson = "Priscila",
                 GenrePerson = "Feminino",
                 BirthDatePerson = new DateTime(1991, 09, 17),
@@ -78,10 +74,9 @@ namespace LabFashion.Context
 
             modelBuilder.Entity<User>().HasData(new User
             {
-                IdUser = 5,
+                IdPerson = 5,
                 TypeUser = Enums.TypeUser.Criador,
                 SystemStatus = Enums.SystemStatus.Ativo,
-                IdPerson = 5,
                 NamePerson = "Sonia",
                 GenrePerson = "Feminino",
                 BirthDatePerson = new DateTime(1953, 12, 26),

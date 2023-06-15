@@ -6,6 +6,8 @@ using LabFashion;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using LabFashion.Context;
 using LabFashion.Mapping;
+using LabFashion.Repositories.Interfaces;
+using LabFashion.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +47,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
