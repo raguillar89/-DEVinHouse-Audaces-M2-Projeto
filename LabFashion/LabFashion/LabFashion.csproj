@@ -34,7 +34,6 @@
     <Folder Include="Context\" />
     <Folder Include="DTOs\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Repositories\Interfaces\" />
   </ItemGroup>
 
 </Project>
