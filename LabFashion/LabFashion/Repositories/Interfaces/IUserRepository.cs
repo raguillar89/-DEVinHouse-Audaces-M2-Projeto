@@ -1,5 +1,4 @@
-﻿using LabFashion.Enums;
-using LabFashion.Models;
+﻿using LabFashion.Models;
 
 namespace LabFashion.Repositories.Interfaces
 {
