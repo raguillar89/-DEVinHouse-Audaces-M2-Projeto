@@ -33,7 +33,6 @@
   <ItemGroup>
     <Folder Include="Context\" />
     <Folder Include="DTOs\" />
-    <Folder Include="Mapping\" />
     <Folder Include="Controllers\" />
     <Folder Include="Repositories\Interfaces\" />
   </ItemGroup>
