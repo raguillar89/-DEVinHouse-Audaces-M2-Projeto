@@ -25,6 +25,7 @@ namespace LabFashion.Migrations
                     DocumentPerson = table.Column<string>(type: "nvarchar(18)", maxLength: 18, nullable: false),
                     PhoneNumberPerson = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TypeUser = table.Column<int>(type: "int", nullable: true),
                     SystemStatus = table.Column<int>(type: "int", nullable: true)
                 },
@@ -35,14 +36,14 @@ namespace LabFashion.Migrations
 
             migrationBuilder.InsertData(
                 table: "People",
-                columns: new[] { "IdPerson", "BirthDatePerson", "Discriminator", "DocumentPerson", "GenrePerson", "NamePerson", "PhoneNumberPerson", "SystemStatus", "TypeUser" },
+                columns: new[] { "IdPerson", "BirthDatePerson", "Discriminator", "DocumentPerson", "Email", "GenrePerson", "NamePerson", "PhoneNumberPerson", "SystemStatus", "TypeUser" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1989, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "00321456987", "Masculino", "Renan", "12345678900", 1, 1 },
-                    { 2, new DateTime(1957, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "7564745756", "Masculino", "José Ricardo", "8679678986", 2, 1 },
-                    { 3, new DateTime(1982, 9, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "11111111111", "Masculino", "Eric", "2121121212", 1, 2 },
-                    { 4, new DateTime(1991, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "43124321432", "Feminino", "Priscila", "52345432543", 2, 1 },
-                    { 5, new DateTime(1953, 12, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "86973535445", "Feminino", "Sonia", "0978096463", 1, 3 }
+                    { 1, new DateTime(1989, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "00321456987", "renan@email.com", "Masculino", "Renan", "12345678900", 1, 1 },
+                    { 2, new DateTime(1957, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "7564745756", "josericardo@email.com", "Masculino", "José Ricardo", "8679678986", 2, 1 },
+                    { 3, new DateTime(1982, 9, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "11111111111", "eric@email.com", "Masculino", "Eric", "2121121212", 1, 2 },
+                    { 4, new DateTime(1991, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "43124321432", "priscila@email.com", "Feminino", "Priscila", "52345432543", 2, 1 },
+                    { 5, new DateTime(1953, 12, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "User", "86973535445", "sonia@email.com", "Feminino", "Sonia", "0978096463", 1, 3 }
                 });
         }
 
