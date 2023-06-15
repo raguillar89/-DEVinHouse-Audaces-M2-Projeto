@@ -48,6 +48,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IClothingCollectionRepository, ClothingCollectionRepository>();
 
 var app = builder.Build();
 
