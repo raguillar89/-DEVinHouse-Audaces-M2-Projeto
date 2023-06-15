@@ -16,7 +16,7 @@ namespace LabFashion.Models
         public string GenrePerson { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir a Data de Nascimento do Usuário.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "dd/MM/yyyy")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "dd-MM-yyyy")]
         public DateTime BirthDatePerson { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir o CPF ou CNPJ do Usuário.")]
