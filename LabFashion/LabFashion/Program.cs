@@ -5,6 +5,7 @@ using System.Text.Json;
 using LabFashion;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using LabFashion.Context;
+using LabFashion.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +44,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 });
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
-builder.Services.AddAutoMapper(typeof(EntitesToDTOMappingProfile));
+builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 
 var app = builder.Build();
 
