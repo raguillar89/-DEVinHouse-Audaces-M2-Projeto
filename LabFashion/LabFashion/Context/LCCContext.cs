@@ -10,6 +10,7 @@ namespace LabFashion.Context
         public LCCContext(DbContextOptions<LCCContext> options) : base(options) { }
 
         public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
