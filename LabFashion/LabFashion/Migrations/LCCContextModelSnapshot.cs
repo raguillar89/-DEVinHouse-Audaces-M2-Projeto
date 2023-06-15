@@ -70,6 +70,10 @@ namespace LabFashion.Migrations
                 {
                     b.HasBaseType("LabFashion.Models.Person");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("SystemStatus")
                         .HasColumnType("int");
 
@@ -87,6 +91,7 @@ namespace LabFashion.Migrations
                             GenrePerson = "Masculino",
                             NamePerson = "Renan",
                             PhoneNumberPerson = "12345678900",
+                            Email = "renan@email.com",
                             SystemStatus = 1,
                             TypeUser = 1
                         },
@@ -98,6 +103,7 @@ namespace LabFashion.Migrations
                             GenrePerson = "Masculino",
                             NamePerson = "José Ricardo",
                             PhoneNumberPerson = "8679678986",
+                            Email = "josericardo@email.com",
                             SystemStatus = 2,
                             TypeUser = 1
                         },
@@ -109,6 +115,7 @@ namespace LabFashion.Migrations
                             GenrePerson = "Masculino",
                             NamePerson = "Eric",
                             PhoneNumberPerson = "2121121212",
+                            Email = "eric@email.com",
                             SystemStatus = 1,
                             TypeUser = 2
                         },
@@ -120,6 +127,7 @@ namespace LabFashion.Migrations
                             GenrePerson = "Feminino",
                             NamePerson = "Priscila",
                             PhoneNumberPerson = "52345432543",
+                            Email = "priscila@email.com",
                             SystemStatus = 2,
                             TypeUser = 1
                         },
@@ -131,6 +139,7 @@ namespace LabFashion.Migrations
                             GenrePerson = "Feminino",
                             NamePerson = "Sonia",
                             PhoneNumberPerson = "0978096463",
+                            Email = "sonia@email.com",
                             SystemStatus = 1,
                             TypeUser = 3
                         });
