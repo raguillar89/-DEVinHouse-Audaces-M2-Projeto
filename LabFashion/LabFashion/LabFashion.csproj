@@ -30,4 +30,14 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Context\" />
+    <Folder Include="Models\" />
+    <Folder Include="Enums\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Mapping\" />
+    <Folder Include="Repositories\Interfaces\" />
+  </ItemGroup>
+
 </Project>
