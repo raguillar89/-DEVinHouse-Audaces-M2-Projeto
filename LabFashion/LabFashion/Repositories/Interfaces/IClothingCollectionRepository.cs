@@ -4,11 +4,11 @@ namespace LabFashion.Repositories.Interfaces
 {
     public interface IClothingCollectionRepository
     {
-        Task<IEnumerable<ClothingCollection>> GetCollections();
-        Task<ClothingCollection> GetCollectionById(int IdCollection);
-        void CreateCollection(ClothingCollection clothingCollection);
-        void UpdateCollection(ClothingCollection clothingCollection);
-        void DeleteCollection(ClothingCollection clothingCollection);
+        Task<IEnumerable<ClothingCollection>> GetClothingCollections();
+        Task<ClothingCollection> GetClothingCollectionById(int IdCollection);
+        void CreateClothingCollection(ClothingCollection clothingCollection);
+        void UpdateClothingCollection(ClothingCollection clothingCollection);
+        void DeleteClothingCollection(ClothingCollection clothingCollection);
         Task<bool> SaveAllAsync();
     }
 }
