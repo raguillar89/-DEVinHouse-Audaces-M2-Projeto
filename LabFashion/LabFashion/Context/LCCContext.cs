@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LabFashion.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LabFashion.Context
 {
@@ -7,6 +8,8 @@ namespace LabFashion.Context
         public LCCContext() { }
 
         public LCCContext(DbContextOptions<LCCContext> options) : base(options) { }
+
+        public virtual DbSet<Person> People { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
