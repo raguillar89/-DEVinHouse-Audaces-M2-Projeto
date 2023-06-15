@@ -32,7 +32,7 @@ namespace LabFashion.Controllers
         [HttpGet("colecoes")]
         public async Task<ActionResult<IEnumerable<ClothingCollection>>> GetClothingCollections(SystemStatus? systemStatus)
         {
-            IQueryable<ClothingCollection> query = _context.Collections;
+            IQueryable<ClothingCollection> query = _context.Collections.Include(x => x.Person);
 
             if (systemStatus != null)
             {
