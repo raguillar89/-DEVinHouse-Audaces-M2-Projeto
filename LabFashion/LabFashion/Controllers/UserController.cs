@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using LabFashion.Context;
 using LabFashion.DTOs;
+using LabFashion.Enums;
 using LabFashion.Models;
 using LabFashion.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LabFashion.Controllers
 {
@@ -10,11 +13,13 @@ namespace LabFashion.Controllers
     [ApiController]
     public class UserController : Controller
     {
+        private readonly LCCContext _context;
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UserController(IUserRepository userRepository, IMapper mapper)
+        public UserController(LCCContext context, IUserRepository userRepository, IMapper mapper)
         {
+            _context = context;
             _userRepository = userRepository;
             _mapper = mapper;
         }
@@ -25,13 +30,17 @@ namespace LabFashion.Controllers
         /// <returns>Returns a list of users successfully</returns>
         /// <response code=200>Returns a list of users successfully</response>
         [HttpGet("usuarios")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers(SystemStatus? systemStatus)
         {
-            var users = await _userRepository.GetUsers();
-            var usersDTO = _mapper.Map<IEnumerable<UserDTO>>(users);
-            return Ok(usersDTO);
-        }
+            IQueryable<User> query = _context.Users;
+
+            if (systemStatus != null)
+            {
+                query = query.Where(e => e.SystemStatus == systemStatus);
+            }
+
+            return await query.ToListAsync();
+        }        
 
         /// <summary>
         /// Return a specific user
@@ -77,25 +86,25 @@ namespace LabFashion.Controllers
         /// <summary>
         /// Update a specific user
         /// </summary>
-        /// <param name="IdUser"></param>
+        /// <param name="id"></param>
         /// <returns>Update a specific user successfully</returns>
         /// <response code=200>Update a specific user successfully</response>
         /// <response code=400>Bad Request</response>
         /// <response code=404>User Not Found</response>
-        [HttpPut("{IdUser}")]
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> PutTheater([FromRoute] int IdUser, [FromBody] UserDTO userDTO)
+        public async Task<ActionResult> PutTheater([FromRoute] int id, [FromBody] UserDTO userDTO)
         {
-            if (userDTO.IdUser == 0)
+            if (userDTO.IdPerson == 0)
             {
                 return BadRequest();
             }
 
             var user = _mapper.Map<User>(userDTO);
             _userRepository.UpdateUser(user);
-            if (userDTO.IdUser == null)
+            if (userDTO.IdPerson == null)
             {
                 return NotFound("User not found.");
             }
