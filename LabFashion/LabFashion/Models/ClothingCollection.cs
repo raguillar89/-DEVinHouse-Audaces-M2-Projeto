@@ -28,10 +28,10 @@ namespace LabFashion.Models
         public string ReleaseYearCollection { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir a Estação da Coleção")]
-        public LaunchStation launchStation { get; set; }
+        public LaunchStation LaunchStation { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir o Status da Coleção")]
-        public SystemStatus systemStatus { get; set; }
+        public SystemStatus SystemStatus { get; set; }
 
         public virtual User? User { get; set; }
     }

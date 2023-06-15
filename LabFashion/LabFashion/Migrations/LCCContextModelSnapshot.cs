@@ -59,7 +59,7 @@ namespace LabFashion.Migrations
 
                     b.HasKey("IdPerson");
 
-                    b.ToTable("People");
+                    b.ToTable("People", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Person");
 
