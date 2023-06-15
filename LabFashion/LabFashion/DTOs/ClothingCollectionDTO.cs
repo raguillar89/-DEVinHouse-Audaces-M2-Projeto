@@ -1,18 +1,16 @@
 ﻿using LabFashion.Enums;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace LabFashion.Models
+namespace LabFashion.DTOs
 {
-    public class ClothingCollection
+    public class ClothingCollectionDTO
     {
-        [Key]
         public int IdCollection { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir o Nome da Coleção")]
         public string NameCollection { get; set; }
 
-        [ForeignKey("Usuário")]
         [Required(ErrorMessage = "É necessário inserir o Id do Usuário na Coleção")]
         public int IdPerson { get; set; }
 
@@ -32,7 +30,5 @@ namespace LabFashion.Models
 
         [Required(ErrorMessage = "É necessário inserir o Status da Coleção")]
         public SystemStatus systemStatus { get; set; }
-
-        public virtual User? User { get; set; }
     }
 }
