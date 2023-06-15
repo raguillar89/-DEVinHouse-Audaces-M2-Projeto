@@ -43,7 +43,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 });
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
-//builder.Services.AddAutoMapper(typeof(EntitesToDTOMappingProfile));
+builder.Services.AddAutoMapper(typeof(EntitesToDTOMappingProfile));
 
 var app = builder.Build();
 
