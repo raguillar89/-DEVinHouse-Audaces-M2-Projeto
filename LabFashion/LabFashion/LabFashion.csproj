@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="Context\" />
-    <Folder Include="Enums\" />
     <Folder Include="DTOs\" />
     <Folder Include="Mapping\" />
     <Folder Include="Controllers\" />
