@@ -8,7 +8,8 @@ namespace LabFashion.Mapping
     {
         public EntitiesToDTOMappingProfile()
         {
-            CreateMap<User, UserDTO>().ReverseMap();            
+            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<Person, PersonDTO>().ReverseMap();
         }
     }
 }
