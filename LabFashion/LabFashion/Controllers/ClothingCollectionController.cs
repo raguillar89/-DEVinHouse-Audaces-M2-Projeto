@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LabFashion.Controllers
 {
-    [Route("api/v{version:apiVersion}/")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class ClothingCollectionController : Controller
     {
@@ -29,7 +29,7 @@ namespace LabFashion.Controllers
         /// </summary>
         /// <returns>Returns a list of collections successfully</returns>
         /// <response code=200>Returns a list of collections successfully</response>
-        [HttpGet("colecoes")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<ClothingCollection>>> GetClothingCollections(SystemStatus? systemStatus)
         {
             IQueryable<ClothingCollection> query = _context.Collections.Include(x => x.Person);
@@ -46,10 +46,10 @@ namespace LabFashion.Controllers
         /// Return a specific collection
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Return a specific user successfully</returns>
+        /// <returns>Return a specific collection successfully</returns>
         /// <response code=200>Return a specific collection successfully</response>
         /// <response code=404>Collection not found</response>
-        [HttpGet("colecoes/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetClothingCollectionById(int id)
@@ -69,7 +69,7 @@ namespace LabFashion.Controllers
         /// <returns>Create a collection successfully</returns>
         /// <response code=201>Create a collection successfully</response>
         /// <response code=400>Bad Request</response>
-        [HttpPost("createClothingCollection")]
+        [HttpPost("createColecao")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> PostClothingCollection([FromBody] ClothingCollectionDTO clothingCollectionDTO)
@@ -78,7 +78,7 @@ namespace LabFashion.Controllers
             _collectionRepository.CreateClothingCollection(clothingCollection);
             if (await _collectionRepository.SaveAllAsync())
             {
-                return Ok("Collection created successfully.");
+                return CreatedAtAction(nameof(GetClothingCollectionById), new { id = clothingCollectionDTO.IdCollection }, clothingCollection);
             }
             return BadRequest();
         }
@@ -91,7 +91,7 @@ namespace LabFashion.Controllers
         /// <response code=200>Update a specific collection successfully</response>
         /// <response code=400>Bad Request</response>
         /// <response code=404>Collection Not Found</response>
-        [HttpPut("collection/{id}")]
+        [HttpPut("updateColecao/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -123,7 +123,7 @@ namespace LabFashion.Controllers
         /// <returns>Delete a specific collection successfully</returns>
         /// <response code=200>Delete a specific collection successfully</response>
         /// <response code=404>Collection not found</response>
-        [HttpDelete("deleteClothingCollection/{id}")]
+        [HttpDelete("deleteColecao/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

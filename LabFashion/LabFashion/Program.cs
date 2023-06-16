@@ -49,6 +49,7 @@ builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IClothingCollectionRepository, ClothingCollectionRepository>();
+builder.Services.AddScoped<IModelClothingRepository, ModelClothingRepository>();
 
 var app = builder.Build();
 
