@@ -12,6 +12,7 @@ namespace LabFashion.Context
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ClothingCollection> Collections { get; set; }
+        public virtual DbSet<ModelClothing> Models { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
