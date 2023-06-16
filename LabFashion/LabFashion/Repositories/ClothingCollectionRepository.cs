@@ -1,4 +1,5 @@
 ﻿using LabFashion.Context;
+using LabFashion.Enums;
 using LabFashion.Models;
 using LabFashion.Repositories.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;
@@ -53,6 +54,13 @@ namespace LabFashion.Repositories
         public async Task<bool> SaveAllAsync()
         {
             return await _lccContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task UpdateClothingCollectionStatus(int IdCollection, SystemStatus systemStatus)
+        {
+            var collection = await _lccContext.Collections.Where(x => x.IdCollection == IdCollection).FirstOrDefaultAsync();
+            collection.SystemStatus = systemStatus;
+            await _lccContext.SaveChangesAsync();
         }
     }
 }
