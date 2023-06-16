@@ -4,11 +4,10 @@ using Newtonsoft.Json.Converters;
 namespace LabFashion.Enums
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum TypeUser
+    public enum LayoutModel
     {
-        Administrador,
-        Gerente,
-        Criador,
-        Outro
+        Bordado,
+        Estampa,
+        Liso
     }
 }
