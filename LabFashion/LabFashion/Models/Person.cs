@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace LabFashion.Models
 {
+    [Index(nameof(DocumentPerson), IsUnique = true)]
     public class Person
     {
         [Key]

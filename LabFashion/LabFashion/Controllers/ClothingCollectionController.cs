@@ -3,7 +3,9 @@ using LabFashion.Context;
 using LabFashion.DTOs;
 using LabFashion.Enums;
 using LabFashion.Models;
+using LabFashion.Repositories;
 using LabFashion.Repositories.Interfaces;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -92,7 +94,7 @@ namespace LabFashion.Controllers
         /// <response code=400>Bad Request</response>
         /// <response code=404>Collection Not Found</response>
         [HttpPut("updateColecao/{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> PutClothingCollection([FromRoute] int id, [FromBody] ClothingCollectionDTO clothingCollectionDTO)
@@ -117,14 +119,43 @@ namespace LabFashion.Controllers
         }
 
         /// <summary>
+        /// Update collection status
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Update collection status successfully</returns>
+        /// <response code=200>Update collection status successfully</response>
+        /// <response code=400>Bad Request</response>
+        /// <response code=404>Collection Not Found</response>
+        [HttpPatch("updateColecao/{IdCollection}/status")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> PatchCollectionStatus([FromRoute] int IdCollection, [FromBody] JsonPatchDocument clothingCollectionDTO)
+        {
+            if (IdCollection == 0)
+            {
+                return BadRequest();
+            }
+
+            if (IdCollection == null)
+            {
+                return NotFound("Collection not found.");
+            }
+
+            await _collectionRepository.UpdateCollectionStatus(IdCollection, clothingCollectionDTO);
+            return Ok();
+        }
+
+        /// <summary>
         /// Delete a specific collection
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Delete a specific collection successfully</returns>
-        /// <response code=200>Delete a specific collection successfully</response>
+        /// <response code=204>Delete a specific collection successfully</response>
+        /// <response code=400>Bad Request</response>
         /// <response code=404>Collection not found</response>
         [HttpDelete("deleteColecao/{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteClothingCollection(int id)
@@ -138,7 +169,7 @@ namespace LabFashion.Controllers
             _collectionRepository.DeleteClothingCollection(clothingCollection);
             if (await _collectionRepository.SaveAllAsync())
             {
-                return Ok("Collection deleted successfully.");
+                return NoContent();
             }
             return BadRequest();
         }

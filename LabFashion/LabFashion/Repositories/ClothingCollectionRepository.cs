@@ -1,6 +1,7 @@
 ﻿using LabFashion.Context;
 using LabFashion.Models;
 using LabFashion.Repositories.Interfaces;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 
 namespace LabFashion.Repositories
@@ -32,6 +33,16 @@ namespace LabFashion.Repositories
         public void UpdateClothingCollection(ClothingCollection clothingCollection)
         {
             _lccContext.Entry(clothingCollection).State = EntityState.Modified;
+        }
+
+        public async Task UpdateCollectionStatus(int IdCollection, JsonPatchDocument clothingCollection)
+        {
+            var col = await _lccContext.Collections.FindAsync(IdCollection);
+            if (col != null)
+            {
+                clothingCollection.ApplyTo(col);
+                await _lccContext.SaveChangesAsync();
+            }
         }
 
         public void DeleteClothingCollection(ClothingCollection clothingCollection)

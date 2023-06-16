@@ -26,6 +26,8 @@ namespace LabFashion.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Person>().HasIndex(u => u.DocumentPerson).IsUnique();
+
             modelBuilder.Entity<User>().HasData(new User
             {
                 IdPerson = 1,
