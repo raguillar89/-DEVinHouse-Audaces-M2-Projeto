@@ -2,7 +2,6 @@
 using LabFashion.Context;
 using LabFashion.DTOs;
 using LabFashion.Enums;
-using LabFashion.Migrations;
 using LabFashion.Models;
 using LabFashion.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +32,7 @@ namespace LabFashion.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ModelClothing>>> GetModelsClothing(LayoutModel? layoutModel)
         {
-            IQueryable<ModelClothing> query = _context.Models.Include(x => x.ClothingCollection);
+            IQueryable<ModelClothing> query = _context.Models.Include(x => x.ClothingCollection).Include(x => x.ClothingCollection.Person);
 
             if (layoutModel != null)
             {
