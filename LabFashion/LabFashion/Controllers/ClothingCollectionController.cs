@@ -3,7 +3,6 @@ using LabFashion.Context;
 using LabFashion.DTOs;
 using LabFashion.Enums;
 using LabFashion.Models;
-using LabFashion.Repositories;
 using LabFashion.Repositories.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -126,23 +125,23 @@ namespace LabFashion.Controllers
         /// <response code=200>Update collection status successfully</response>
         /// <response code=400>Bad Request</response>
         /// <response code=404>Collection Not Found</response>
-        [HttpPatch("updateColecao/{IdCollection}/status")]
+        [HttpPut("updateColecao/{id}/status")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> PatchCollectionStatus([FromRoute] int IdCollection, [FromBody] JsonPatchDocument clothingCollectionDTO)
+        public async Task<ActionResult> PatchCollectionStatus([FromRoute] int id, [FromBody] SystemStatus systemStatus)
         {
-            if (IdCollection == 0)
+            if (id == 0)
             {
                 return BadRequest();
             }
 
-            if (IdCollection == null)
+            if (id == null)
             {
                 return NotFound("Collection not found.");
             }
 
-            await _collectionRepository.UpdateCollectionStatus(IdCollection, clothingCollectionDTO);
+            await _collectionRepository.UpdateClothingCollectionStatus(id, systemStatus);
             return Ok();
         }
 
