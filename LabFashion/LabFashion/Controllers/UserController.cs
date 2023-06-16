@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LabFashion.Controllers
 {
-    [Route("api/v{version:apiVersion}/")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class UserController : Controller
     {
@@ -29,7 +29,7 @@ namespace LabFashion.Controllers
         /// </summary>
         /// <returns>Returns a list of users successfully</returns>
         /// <response code=200>Returns a list of users successfully</response>
-        [HttpGet("usuarios")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers(SystemStatus? systemStatus)
         {
             IQueryable<User> query = _context.Users;
@@ -49,7 +49,7 @@ namespace LabFashion.Controllers
         /// <returns>Return a specific user successfully</returns>
         /// <response code=200>Return a specific user successfully</response>
         /// <response code=404>User not found</response>
-        [HttpGet("usuarios/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetUserById(int id)
@@ -69,7 +69,7 @@ namespace LabFashion.Controllers
         /// <returns>Create an user successfully</returns>
         /// <response code=201>Create an user successfully</response>
         /// <response code=400>Bad Request</response>
-        [HttpPost("createUser")]
+        [HttpPost("createUsuario")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> PostUser([FromBody] UserDTO userDTO)
@@ -78,7 +78,7 @@ namespace LabFashion.Controllers
             _userRepository.CreateUser(user);
             if (await _userRepository.SaveAllAsync())
             {
-                return Ok("User created successfully.");
+                return CreatedAtAction(nameof(GetUserById), new { id = userDTO.IdPerson }, user);
             }
             return BadRequest();
         }
@@ -91,11 +91,11 @@ namespace LabFashion.Controllers
         /// <response code=200>Update a specific user successfully</response>
         /// <response code=400>Bad Request</response>
         /// <response code=404>User Not Found</response>
-        [HttpPut("usuario/{id}")]
+        [HttpPut("updateUsuario/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> PutTheater([FromRoute] int id, [FromBody] UserDTO userDTO)
+        public async Task<ActionResult> PutUser([FromRoute] int id, [FromBody] UserDTO userDTO)
         {
             if (userDTO.IdPerson == 0)
             {
@@ -123,11 +123,11 @@ namespace LabFashion.Controllers
         /// <returns>Delete a specific theater successfully</returns>
         /// <response code=200>Delete a specific theater successfully</response>
         /// <response code=404>Theater not found</response>
-        [HttpDelete("deleteUser/{id}")]
+        [HttpDelete("deleteUsuario/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> DeleteTheater(int id)
+        public async Task<ActionResult> DeleteUser(int id)
         {
             var user = await _userRepository.GetUserById(id);
             if (user == null)
