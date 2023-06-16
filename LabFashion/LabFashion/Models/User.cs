@@ -1,8 +1,10 @@
 ﻿using LabFashion.Enums;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace LabFashion.Models
 {
+    [Index(nameof(Email), IsUnique = true)]
     public class User : Person
     {
         [Required(ErrorMessage = "É necessário inserir o E-mail do Usuário")]

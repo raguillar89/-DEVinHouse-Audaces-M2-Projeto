@@ -6,9 +6,9 @@ namespace LabFashion.Enums
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TypeUser
     {
-        Administrador,
-        Gerente,
-        Criador,
-        Outro
+        Administrador = 1,
+        Gerente = 2,
+        Criador = 3,
+        Outro = 4
     }
 }
