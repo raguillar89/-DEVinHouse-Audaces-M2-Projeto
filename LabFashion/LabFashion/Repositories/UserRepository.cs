@@ -1,4 +1,5 @@
 ﻿using LabFashion.Context;
+using LabFashion.Enums;
 using LabFashion.Models;
 using LabFashion.Repositories.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;
@@ -35,16 +36,6 @@ namespace LabFashion.Repositories
             _lccContext.Entry(user).State = EntityState.Modified;
         }
 
-        public async Task UpdateUserStatus(int IdPerson, JsonPatchDocument user)
-        {
-            var us = await _lccContext.People.FindAsync(IdPerson);
-            if (us != null)
-            {
-                user.ApplyTo(us);
-                await _lccContext.SaveChangesAsync();
-            }
-        }
-
         public void DeleteUser(User user)
         {
             _lccContext.Users.Remove(user);
@@ -53,6 +44,13 @@ namespace LabFashion.Repositories
         public async Task<bool> SaveAllAsync()
         {
             return await _lccContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task UpdateUserStatus(int IdPerson, SystemStatus systemStatus)
+        {
+            var user = await _lccContext.Users.Where(x => x.IdPerson == IdPerson).FirstOrDefaultAsync();
+            user.SystemStatus = systemStatus;  
+            await _lccContext.SaveChangesAsync();
         }
     }
 }

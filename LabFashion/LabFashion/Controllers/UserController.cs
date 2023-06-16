@@ -125,11 +125,11 @@ namespace LabFashion.Controllers
         /// <response code=204>Update user status successfully</response>
         /// <response code=400>Bad Request</response>
         /// <response code=404>User Not Found</response>
-        [HttpPatch("updateUsuario/{id}/status")]
+        [HttpPut("updateUsuario/{id}/status")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> PatchUserStatus([FromRoute] int id, [FromBody] JsonPatchDocument userDTO)
+        public async Task<ActionResult> PutUserStatus([FromRoute] int id, [FromBody] SystemStatus systemStatus)
         {
             if (id == 0)
             {
@@ -141,7 +141,7 @@ namespace LabFashion.Controllers
                 return NotFound("User not found.");
             }
 
-            await _userRepository.UpdateUserStatus(id, userDTO);
+            await _userRepository.UpdateUserStatus(id, systemStatus);
             return Ok();
         }
 
