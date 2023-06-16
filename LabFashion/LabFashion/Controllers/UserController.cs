@@ -4,6 +4,7 @@ using LabFashion.DTOs;
 using LabFashion.Enums;
 using LabFashion.Models;
 using LabFashion.Repositories.Interfaces;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -117,14 +118,42 @@ namespace LabFashion.Controllers
         }
 
         /// <summary>
-        /// Delete a specific theater
+        /// Update user status
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Delete a specific theater successfully</returns>
-        /// <response code=200>Delete a specific theater successfully</response>
-        /// <response code=404>Theater not found</response>
-        [HttpDelete("deleteUsuario/{id}")]
+        /// <returns>Update user status successfully</returns>
+        /// <response code=204>Update user status successfully</response>
+        /// <response code=400>Bad Request</response>
+        /// <response code=404>User Not Found</response>
+        [HttpPatch("updateUsuario/{id}/status")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> PatchUserStatus([FromRoute] int id, [FromBody] JsonPatchDocument userDTO)
+        {
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            if (id == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            await _userRepository.UpdateUserStatus(id, userDTO);
+            return Ok();
+        }
+
+        /// <summary>
+        /// Delete a specific user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Delete a specific user successfully</returns>
+        /// <response code=204>Delete a specific user successfully</response>
+        /// <response code=404>User not found</response>
+        [HttpDelete("deleteUsuario/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteUser(int id)
@@ -138,7 +167,7 @@ namespace LabFashion.Controllers
             _userRepository.DeleteUser(user);
             if (await _userRepository.SaveAllAsync())
             {
-                return Ok("User deleted successfully.");
+                return NoContent();
             }
             return BadRequest();
         }
