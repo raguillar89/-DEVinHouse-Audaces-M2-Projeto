@@ -92,7 +92,7 @@ namespace LabFashion.Controllers
         /// <response code=400>Bad Request</response>
         /// <response code=404>Model Not Found</response>
         [HttpPut("updateModelo/{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> PutModelsClothing([FromRoute] int id, [FromBody] ModelClothingDTO modelClothingDTO)
@@ -121,7 +121,8 @@ namespace LabFashion.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Delete a specific model successfully</returns>
-        /// <response code=200>Delete a specific model successfully</response>
+        /// <response code=204>Delete a specific model successfully</response>
+        /// <response code=400>Bad Request</response>
         /// <response code=404>Model not found</response>
         [HttpDelete("deleteModelo/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -138,7 +139,7 @@ namespace LabFashion.Controllers
             _modelRepository.DeleteModelsClothing(modelClothing);
             if (await _modelRepository.SaveAllAsync())
             {
-                return Ok("Collection deleted successfully.");
+                return NoContent();
             }
             return BadRequest();
         }

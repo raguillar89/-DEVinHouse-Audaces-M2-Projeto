@@ -127,6 +127,9 @@ namespace LabFashion.Migrations
 
                     b.HasKey("IdPerson");
 
+                    b.HasIndex("DocumentPerson")
+                        .IsUnique();
+
                     b.ToTable("People");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Person");
@@ -140,13 +143,17 @@ namespace LabFashion.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("SystemStatus")
                         .HasColumnType("int");
 
                     b.Property<int>("TypeUser")
                         .HasColumnType("int");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.HasDiscriminator().HasValue("User");
 
@@ -160,8 +167,8 @@ namespace LabFashion.Migrations
                             NamePerson = "Renan",
                             PhoneNumberPerson = "12345678900",
                             Email = "renan@email.com",
-                            SystemStatus = 0,
-                            TypeUser = 0
+                            SystemStatus = 1,
+                            TypeUser = 1
                         },
                         new
                         {
@@ -172,8 +179,8 @@ namespace LabFashion.Migrations
                             NamePerson = "José Ricardo",
                             PhoneNumberPerson = "8679678986",
                             Email = "josericardo@email.com",
-                            SystemStatus = 1,
-                            TypeUser = 0
+                            SystemStatus = 2,
+                            TypeUser = 1
                         },
                         new
                         {
@@ -184,8 +191,8 @@ namespace LabFashion.Migrations
                             NamePerson = "Eric",
                             PhoneNumberPerson = "2121121212",
                             Email = "eric@email.com",
-                            SystemStatus = 0,
-                            TypeUser = 1
+                            SystemStatus = 1,
+                            TypeUser = 2
                         },
                         new
                         {
@@ -196,8 +203,8 @@ namespace LabFashion.Migrations
                             NamePerson = "Priscila",
                             PhoneNumberPerson = "52345432543",
                             Email = "priscila@email.com",
-                            SystemStatus = 1,
-                            TypeUser = 0
+                            SystemStatus = 2,
+                            TypeUser = 1
                         },
                         new
                         {
@@ -208,8 +215,8 @@ namespace LabFashion.Migrations
                             NamePerson = "Sonia",
                             PhoneNumberPerson = "0978096463",
                             Email = "sonia@email.com",
-                            SystemStatus = 0,
-                            TypeUser = 2
+                            SystemStatus = 1,
+                            TypeUser = 3
                         });
                 });
 

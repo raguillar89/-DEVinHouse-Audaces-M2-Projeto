@@ -6,7 +6,7 @@ namespace LabFashion.Enums
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SystemStatus
     {
-        Ativo,
-        Inativo
+        Ativo = 1,
+        Inativo = 2
     }
 }
