@@ -80,7 +80,7 @@ namespace LabFashion.Controllers
             var user = _mapper.Map<User>(userDTO);
             _userRepository.CreateUser(user);
 
-            if(user.DocumentPerson != _context.Users.First().DocumentPerson)
+            if(user.DocumentPerson == _context.Users.First().DocumentPerson)
             {
                 return Conflict();
             }

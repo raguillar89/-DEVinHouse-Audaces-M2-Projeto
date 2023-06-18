@@ -79,7 +79,7 @@ namespace LabFashion.Controllers
             var modelClothing = _mapper.Map<ModelClothing>(modelClothingDTO);
             _modelRepository.CreateModelsClothing(modelClothing);
 
-            if (modelClothing.NameModel != _context.Models.First().NameModel)
+            if (modelClothing.NameModel == _context.Models.First().NameModel)
             {
                 return Conflict();
             }
