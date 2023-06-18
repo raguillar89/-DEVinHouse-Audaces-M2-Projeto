@@ -70,13 +70,21 @@ namespace LabFashion.Controllers
         /// <returns>Create a collection successfully</returns>
         /// <response code=201>Create a collection successfully</response>
         /// <response code=400>Bad Request</response>
+        /// <response code=409>Collection name already exists</response>
         [HttpPost("createColecao")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> PostClothingCollection([FromBody] ClothingCollectionDTO clothingCollectionDTO)
         {
             var clothingCollection = _mapper.Map<ClothingCollection>(clothingCollectionDTO);
             _collectionRepository.CreateClothingCollection(clothingCollection);
+
+            if (clothingCollection.NameCollection != _context.Collections.First().NameCollection)
+            {
+                return Conflict();
+            }
+
             if (await _collectionRepository.SaveAllAsync())
             {
                 return CreatedAtAction(nameof(GetClothingCollectionById), new { id = clothingCollectionDTO.IdCollection }, clothingCollection);

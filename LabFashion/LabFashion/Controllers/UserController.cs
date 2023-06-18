@@ -70,13 +70,21 @@ namespace LabFashion.Controllers
         /// <returns>Create an user successfully</returns>
         /// <response code=201>Create an user successfully</response>
         /// <response code=400>Bad Request</response>
+        /// <response code=409>Document already exists</response>
         [HttpPost("createUsuario")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> PostUser([FromBody] UserDTO userDTO)
-        {
+        {            
             var user = _mapper.Map<User>(userDTO);
             _userRepository.CreateUser(user);
+
+            if(user.DocumentPerson != _context.Users.First().DocumentPerson)
+            {
+                return Conflict();
+            }
+
             if (await _userRepository.SaveAllAsync())
             {
                 return CreatedAtAction(nameof(GetUserById), new { id = userDTO.IdPerson }, user);
@@ -93,22 +101,23 @@ namespace LabFashion.Controllers
         /// <response code=400>Bad Request</response>
         /// <response code=404>User Not Found</response>
         [HttpPut("updateUsuario/{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> PutUser([FromRoute] int id, [FromBody] UserDTO userDTO)
         {
-            if (userDTO.IdPerson == 0)
+            if (id == 0)
             {
                 return BadRequest();
             }
 
-            var user = _mapper.Map<User>(userDTO);
-            _userRepository.UpdateUser(user);
-            if (userDTO.IdPerson == null)
+            if (id == null)
             {
                 return NotFound("User not found.");
             }
+
+            var user = _mapper.Map<User>(userDTO);
+            _userRepository.UpdateUser(user);            
 
             if (await _userRepository.SaveAllAsync())
             {
@@ -122,11 +131,11 @@ namespace LabFashion.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Update user status successfully</returns>
-        /// <response code=204>Update user status successfully</response>
+        /// <response code=200>Update user status successfully</response>
         /// <response code=400>Bad Request</response>
         /// <response code=404>User Not Found</response>
         [HttpPut("updateUsuario/{id}/status")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> PutUserStatus([FromRoute] int id, [FromBody] SystemStatus systemStatus)
