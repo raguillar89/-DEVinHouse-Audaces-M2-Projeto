@@ -80,7 +80,7 @@ namespace LabFashion.Controllers
             var clothingCollection = _mapper.Map<ClothingCollection>(clothingCollectionDTO);
             _collectionRepository.CreateClothingCollection(clothingCollection);
 
-            if (clothingCollection.NameCollection != _context.Collections.First().NameCollection)
+            if (clothingCollection.NameCollection == _context.Collections.First().NameCollection)
             {
                 return Conflict();
             }
