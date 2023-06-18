@@ -69,13 +69,21 @@ namespace LabFashion.Controllers
         /// <returns>Create a model successfully</returns>
         /// <response code=201>Create a model successfully</response>
         /// <response code=400>Bad Request</response>
+        /// <response code=409>Model name already exists</response>
         [HttpPost("createModelo")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> PostModelsClothing([FromBody] ModelClothingDTO modelClothingDTO)
         {
             var modelClothing = _mapper.Map<ModelClothing>(modelClothingDTO);
             _modelRepository.CreateModelsClothing(modelClothing);
+
+            if (modelClothing.NameModel != _context.Models.First().NameModel)
+            {
+                return Conflict();
+            }
+
             if (await _modelRepository.SaveAllAsync())
             {
                 return CreatedAtAction(nameof(GetModelsClothingById), new { id = modelClothingDTO.IdModel}, modelClothing);
