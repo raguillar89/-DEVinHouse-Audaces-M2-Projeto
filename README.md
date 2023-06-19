@@ -16,4 +16,4 @@
 <h2 align="center"> 🔧 Instructions 🔧 </h2>
 <h3 align="center"> Installing </h3>
 <hr>
-<p>The project was created and tested in Visual Studio (2022 - Framework .NET 7.0). The database used was created using Microsoft SQL Server Management Studio 19. To test the application, you can use Swagger, which is already configured in the project or install Postman.</p>
+<p aling="center">The project was created and tested in Visual Studio (2022 - Framework .NET 7.0). The database used was created using Microsoft SQL Server Management Studio 19. To test the application, you can use Swagger, which is already configured in the project or install Postman.</p>
