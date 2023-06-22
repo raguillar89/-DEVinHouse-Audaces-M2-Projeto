@@ -13,9 +13,11 @@ namespace LabFashion.Models
         public string NameModel { get; set; }        
 
         [Required(ErrorMessage = "É necessário inserir o Tipo do Modelo")]
+        [EnumDataType(typeof(TypeModel))]
         public TypeModel TypeModel { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir o Layout do Modelo")]
+        [EnumDataType(typeof(LayoutModel))]
         public LayoutModel LayoutModel { get; set; }
 
         [ForeignKey("ClothingCollection")]

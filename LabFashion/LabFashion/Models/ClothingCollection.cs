@@ -28,10 +28,12 @@ namespace LabFashion.Models
         public string ReleaseYearCollection { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir a Estação da Coleção")]
-        public LaunchStation? LaunchStation { get; set; }
+        [EnumDataType(typeof(LaunchStation))]
+        public LaunchStation LaunchStation { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir o Status da Coleção")]
-        public SystemStatus? SystemStatus { get; set; }
+        [EnumDataType(typeof(SystemStatus))]
+        public SystemStatus SystemStatus { get; set; }
 
         public virtual Person? Person { get; set; }
     }
