@@ -11,9 +11,11 @@ namespace LabFashion.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir o Tipo de Usuário")]
+        [EnumDataType(typeof(TypeUser))]
         public TypeUser TypeUser { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir o Status de Usuário")]
+        [EnumDataType(typeof(SystemStatus))]
         public SystemStatus SystemStatus { get; set; }
     }
 }
