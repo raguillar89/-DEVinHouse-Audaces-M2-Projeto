@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace LabFashion.Models
 {
