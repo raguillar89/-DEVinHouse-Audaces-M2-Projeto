@@ -28,6 +28,7 @@ namespace LabFashion.Controllers
         /// <summary>
         /// Return a list of collections
         /// </summary>
+        /// <param name="systemStatus"></param>
         /// <returns>Returns a list of collections successfully</returns>
         /// <response code=200>Returns a list of collections successfully</response>
         [HttpGet]
@@ -67,6 +68,7 @@ namespace LabFashion.Controllers
         /// <summary>
         /// Create a collection
         /// </summary>
+        /// <param name="clothingCollectionDTO"></param>
         /// <returns>Create a collection successfully</returns>
         /// <response code=201>Create a collection successfully</response>
         /// <response code=400>Bad Request</response>
@@ -96,6 +98,7 @@ namespace LabFashion.Controllers
         /// Update a specific collection
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="clothingCollectionDTO"></param>
         /// <returns>Update a specific collection successfully</returns>
         /// <response code=200>Update a specific collection successfully</response>
         /// <response code=400>Bad Request</response>
@@ -129,6 +132,7 @@ namespace LabFashion.Controllers
         /// Update collection status
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="systemStatus"></param>
         /// <returns>Update collection status successfully</returns>
         /// <response code=200>Update collection status successfully</response>
         /// <response code=400>Bad Request</response>
@@ -162,7 +166,7 @@ namespace LabFashion.Controllers
         /// <response code=400>Bad Request</response>
         /// <response code=404>Collection not found</response>
         [HttpDelete("deleteColecao/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteClothingCollection(int id)

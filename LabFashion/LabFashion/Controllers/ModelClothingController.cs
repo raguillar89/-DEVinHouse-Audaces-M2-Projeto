@@ -27,6 +27,7 @@ namespace LabFashion.Controllers
         /// <summary>
         /// Return a list of models
         /// </summary>
+        /// <param name="layoutModel"></param>
         /// <returns>Returns a list of models successfully</returns>
         /// <response code=200>Returns a list of models successfully</response>
         [HttpGet]
@@ -66,6 +67,7 @@ namespace LabFashion.Controllers
         /// <summary>
         /// Create a model
         /// </summary>
+        /// <param name="modelClothingDTO"></param>
         /// <returns>Create a model successfully</returns>
         /// <response code=201>Create a model successfully</response>
         /// <response code=400>Bad Request</response>
@@ -95,6 +97,7 @@ namespace LabFashion.Controllers
         /// Update a specific model
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="modelClothingDTO"></param>
         /// <returns>Update a specific model successfully</returns>
         /// <response code=200>Update a specific model successfully</response>
         /// <response code=400>Bad Request</response>
