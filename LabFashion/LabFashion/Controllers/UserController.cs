@@ -67,6 +67,7 @@ namespace LabFashion.Controllers
         /// <summary>
         /// Create an user
         /// </summary>
+        /// <param name="userDTO"></param>
         /// <returns>Create an user successfully</returns>
         /// <response code=201>Create an user successfully</response>
         /// <response code=400>Bad Request</response>
@@ -96,6 +97,7 @@ namespace LabFashion.Controllers
         /// Update a specific user
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="userDTO"></param>
         /// <returns>Update a specific user successfully</returns>
         /// <response code=200>Update a specific user successfully</response>
         /// <response code=400>Bad Request</response>
@@ -130,6 +132,7 @@ namespace LabFashion.Controllers
         /// Update user status
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="systemStatus"></param>
         /// <returns>Update user status successfully</returns>
         /// <response code=200>Update user status successfully</response>
         /// <response code=400>Bad Request</response>
@@ -160,9 +163,10 @@ namespace LabFashion.Controllers
         /// <param name="id"></param>
         /// <returns>Delete a specific user successfully</returns>
         /// <response code=204>Delete a specific user successfully</response>
+        /// <response code=400>Bad Request</response>
         /// <response code=404>User not found</response>
         [HttpDelete("deleteUsuario/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteUser(int id)

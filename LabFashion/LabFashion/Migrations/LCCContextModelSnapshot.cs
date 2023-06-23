@@ -47,10 +47,9 @@ namespace LabFashion.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReleaseYearCollection")
-                        .IsRequired()
+                    b.Property<int>("ReleaseYearCollection")
                         .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
+                        .HasColumnType("int");
 
                     b.Property<int>("SystemStatus")
                         .HasColumnType("int");
