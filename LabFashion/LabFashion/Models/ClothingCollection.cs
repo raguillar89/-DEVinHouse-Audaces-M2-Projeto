@@ -25,7 +25,7 @@ namespace LabFashion.Models
         [Required(ErrorMessage = "É necessário inserir o Ano de Lançamento da Coleção")]
         [MaxLength(4, ErrorMessage = "Tamanho máximo de 4 caracteres.")]
         [MinLength(4, ErrorMessage = "Tamanho mínimo de 4 caracteres.")]
-        public string ReleaseYearCollection { get; set; }
+        public int ReleaseYearCollection { get; set; }
 
         [Required(ErrorMessage = "É necessário inserir a Estação da Coleção")]
         [EnumDataType(typeof(LaunchStation))]
